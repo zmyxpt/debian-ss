@@ -1,0 +1,34 @@
+version: '3.5'
+
+services:
+
+  caddy:
+    image: caddy
+    build:
+      context: Dockerfiles
+      dockerfile: caddy.Dockerfile
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Volumes/caddyfile:/etc/caddy
+      - ./Volumes/caddydata:/data
+    restart: always
+    networks: 
+      - caddy-shadowsocks
+
+  shadowsocks:
+    image: shadowsocks
+    build:
+      context: Dockerfiles
+      dockerfile: shadowsocks.Dockerfile
+    container_name: shadowsocks
+    volumes:
+      - ./Volumes/shadowsocks:/etc/shadowsocks-libev
+    restart: always
+    networks:
+      - caddy-shadowsocks
+
+networks:
+  caddy-shadowsocks:
