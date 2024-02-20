@@ -6,7 +6,7 @@ check_if_running_as_root()
     if [[ $UID -ne 0 ]]
     then
         echo -e "\033[31mNot running with root, exiting...\033[0m"
-        exit 1
+        exit 11
     fi
 }
 
@@ -15,7 +15,7 @@ check_if_running_in_container()
     if [[ $(ps --pid 1 | grep -v PID | awk '{print $4}') != "systemd" ]]
     then
         echo -e "\033[31mRunning in containers is not supported, exiting ...\033[0m"
-        exit 2
+        exit 12
     fi
 }
 
@@ -24,7 +24,7 @@ check_os_version()
     if [[ $(lsb_release -is 2>&1) != "Debian" ]]
     then
         echo -e "\033[31mUnsupported linux distro!\033[0m"
-        exit 3
+        exit 13
     fi
 
     if [[ $(lsb_release -cs 2>&1) != "buster" &&
@@ -32,7 +32,7 @@ check_os_version()
           $(lsb_release -cs 2>&1) != "bookworm" ]]
     then
         echo -e "\033[31mUnsupported debian version!\033[0m"
-        exit 4
+        exit 14
     fi
 }
 
@@ -80,7 +80,7 @@ download_res()
     if ! curl -fsSL 'https://github.com/zmyxpt/debian-ss/archive/refs/heads/main.zip' -o debian-ss.zip
     then
         echo -e "\033[31mFail to download debian-ss resource, exiting...\033[0m"
-        exit 5
+        exit 15
     fi
 
     unzip -o debian-ss.zip
