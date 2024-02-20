@@ -1,0 +1,33 @@
+domains
+{
+	tls email {
+		protocols tls1.3
+	}
+	log {
+		output file /var/log/caddy/access.log
+	}
+
+	root * /var/www
+	header {
+		Strict-Transport-Security max-age=31536000
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy no-referrer-when-downgrade
+	}	
+	encode gzip
+	
+	route * {
+		route /ws_path {
+			rewrite * /
+			reverse_proxy / shadowsocks:9000 {
+				header_up -Origin
+			}
+		}
+		route / {
+			file_server
+		}
+		route * {
+			redir https://{host} permanent
+		}
+	}
+}
