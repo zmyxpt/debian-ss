@@ -166,7 +166,7 @@ auto_update_cron()
     local cronfile
     cronfile=$(mktemp)
     cat <<'EOF' >"$cronfile"
-0 4 * * 1 bash "$HOME"/debian-ss-main/auto-update.sh
+0 19 * * 1 bash "$HOME"/debian-ss-main/auto-update.sh
 EOF
     crontab "$cronfile"
     rm "$cronfile"
