@@ -154,7 +154,7 @@ run_server()
     fi
 
     docker-compose pull
-    docker-compose build --pull
+    docker-compose build --no-cache --pull
     docker-compose up -d
 }
 

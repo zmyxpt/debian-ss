@@ -9,7 +9,7 @@ apt-get upgrade --with-new-pkgs -y
 
 docker-compose down
 docker-compose pull
-docker-compose build --pull
+docker-compose build --no-cache --pull
 docker-compose up -d
 
 systemctl reboot
