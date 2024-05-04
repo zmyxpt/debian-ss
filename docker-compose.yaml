@@ -4,9 +4,6 @@ services:
 
   caddy:
     image: caddy
-    build:
-      context: Dockerfiles
-      dockerfile: caddy.Dockerfile
     container_name: caddy
     ports:
       - "80:80"
