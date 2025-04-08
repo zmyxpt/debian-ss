@@ -12,7 +12,7 @@ domains
 		X-Frame-Options DENY
 		Referrer-Policy no-referrer-when-downgrade
 	}	
-	encode gzip
+	encode
 	
 	route * {
 		route /ws_path {
@@ -20,7 +20,9 @@ domains
 			reverse_proxy shadowsocks:9000
 		}
 		route * {
-			reverse_proxy https://mirrors.mit.edu
+			reverse_proxy https://github.com {
+				header_up Host {upstream_hostport}
+			}
 		}
 	}
 }
