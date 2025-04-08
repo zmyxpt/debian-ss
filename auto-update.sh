@@ -9,8 +9,8 @@ apt-get upgrade --with-new-pkgs -y
 apt-get autoremove --purge -y
 
 docker-compose down
-docker-compose pull
-docker-compose build --no-cache --pull
+docker-compose pull || true
+docker-compose build --no-cache --pull || true
 docker-compose up -d
 docker system prune --volumes -f
 
