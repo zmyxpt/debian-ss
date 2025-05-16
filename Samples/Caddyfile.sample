@@ -20,9 +20,13 @@ domains
 			reverse_proxy shadowsocks:9000
 		}
 		route * {
-			reverse_proxy https://github.com {
-				header_up Host {upstream_hostport}
-			}
+			header Content-Type text/html
+			respond <<HTML
+				<html>
+					<head><title>Welcome</title></head>
+					<body>May the Force be with you</body>
+				</html>
+				HTML 200
 		}
 	}
 }
