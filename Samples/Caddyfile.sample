@@ -23,8 +23,21 @@ domains
 			header Content-Type text/html
 			respond <<HTML
 				<html>
-					<head><title>Welcome</title></head>
-					<body>May the Force be with you</body>
+					<head>
+						<title>Welcome</title>
+						<style>
+							body {
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								height: 100vh;
+								margin: 0;
+								font-size: 60px;
+								text-align: center;
+							}
+						</style>
+					</head>
+					<body>May the Force be<br>with you</body>
 				</html>
 				HTML 200
 		}
